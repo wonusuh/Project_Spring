@@ -14,38 +14,52 @@
 		<h2>My ToDo App</h2>
 		<hr>
 		<div class="input-group">
-			<input class="form-control" id="itemInput" type="text"
+			<input class="form-control" id="item" type="text"
 				placeholder="할 일을 입력하세요." />
 			<button class="btn btn-primary" type="button" onclick="addItem()">할
 				일 추가</button>
 		</div>
 		<hr>
-		<ul class="list-group" id="toDoList"></ul>
+		<ul class="list-group" id="todolist"></ul>
 	</div>
 </body>
-<script type="text/javascript">
-function addItem() {
-	// 입력값을 읽어와 todo 변수에 저장합니다.
-	let todo = document.getElementById("itemInput");
-	// <ul> 요소를 참조하여 list 변수에 저장
-	let list = document.getElementById("toDoList");
-	// 새로운 <li> 요소를 생성하여 listitem 변수에 저장
-	let anItem = document.createElement("li");
-	// 새로운 목록에 디자인 추가
-	anItem.className = "d-flex list-group-item list-group-item-action list-group-item-warning";
-	// <li> 요소에 들어갈 닫기 버튼 생성
-	let xBtn = document.createElement("button");
-	// 버튼에 부트스트랩 클래스 적용
-	xBtn.className = "btn-close ms-auto";
-	// <li> 에 버튼 추가
-	anItem.appendChild(xBtn);
-	// 입력값을 <li> 태그 바디에 추가
-	anItem.innerText = todo.value;
-	// ul 요소에 li 요소 추가
-	list.appendChild(anItem);
-	// 입력칸 비우기 및 포커스 이동
-	todo.value = null;
-	todo.focus();
-}
+<script>
+	function addItem() {
+		// 입력값을 읽어와 todo 변수에 저장합니다.
+		let todo = document.getElementById("item");
+
+		// <ul> 요소를 참조하여 list 변수에 저장
+		let list = document.getElementById("todolist");
+
+		// 새로운 <li> 요소를 생성하여 listitem 변수에 저장
+		let listitem = document.createElement("li");
+
+		// 새로운 목록에 디자인 추가
+		listitem.className = "d-flex list-group-item list-group-item-action list-group-item-warning";
+
+		// <li> 요소에 들어갈 닫기 버튼 생성
+		let xbtn = document.createElement("button");
+
+		// 버튼에 부트스트랩 클래스 적용
+		xbtn.className = "btn-close ms-auto";
+
+		xbtn.onclick = function(e) {
+			let pnode = e.target.parentNode;
+			list.removeChild(pnode);
+		}
+
+		// 입력값을 <li> 태그 바디에 추가
+		listitem.innerText = todo.value;
+
+		// <li> 에 버튼 추가
+		listitem.appendChild(xbtn);
+
+		// ul 요소에 li 요소 추가
+		list.appendChild(listitem);
+
+		// 입력칸 비우기 및 포커스 이동
+		todo.value = null;
+		todo.focus();
+	}
 </script>
 </html>
