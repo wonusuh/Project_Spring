@@ -23,7 +23,7 @@
 		<ul class="list-group" id="todolist"></ul>
 	</div>
 </body>
-<script type="text/javascript">
+<script>
 	function addItem() {
 		// 입력값을 읽어와 todo 변수에 저장합니다.
 		let todo = document.getElementById("item");
@@ -32,25 +32,30 @@
 		let list = document.getElementById("todolist");
 
 		// 새로운 <li> 요소를 생성하여 listitem 변수에 저장
-		let anItem = document.createElement("li");
+		let listitem = document.createElement("li");
 
 		// 새로운 목록에 디자인 추가
-		anItem.className = "d-flex list-group-item list-group-item-action list-group-item-warning";
+		listitem.className = "d-flex list-group-item list-group-item-action list-group-item-warning";
 
 		// <li> 요소에 들어갈 닫기 버튼 생성
-		let xBtn = document.createElement("button");
+		let xbtn = document.createElement("button");
 
 		// 버튼에 부트스트랩 클래스 적용
-		xBtn.className = "btn-close ms-auto";
+		xbtn.className = "btn-close ms-auto";
 
-		// <li> 에 버튼 추가
-		anItem.appendChild(xBtn);
+		xbtn.onclick = function(e) {
+			let pnode = e.target.parentNode;
+			list.removeChild(pnode);
+		}
 
 		// 입력값을 <li> 태그 바디에 추가
-		anItem.innerText = todo.value;
+		listitem.innerText = todo.value;
+
+		// <li> 에 버튼 추가
+		listitem.appendChild(xbtn);
 
 		// ul 요소에 li 요소 추가
-		list.appendChild(anItem);
+		list.appendChild(listitem);
 
 		// 입력칸 비우기 및 포커스 이동
 		todo.value = null;
