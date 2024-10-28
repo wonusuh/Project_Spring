@@ -32,10 +32,10 @@ public class Calculator {
 		long result = 0;
 		switch (op) {
 		case "+":
-			result = n1 + n2;
+			result = (long) n1 + n2;
 			break;
 		case "-":
-			result = n1 - n2;
+			result = n1 - (long) n2;
 			break;
 		case "*":
 			result = n1 * n2;
