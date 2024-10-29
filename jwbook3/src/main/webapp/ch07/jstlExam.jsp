@@ -15,7 +15,7 @@
 	<c:set var="product1" value="<b>애플 아이폰</b>" />
 	<c:set var="product2" value="삼성 갤럭시 노트"></c:set>
 	<!-- 이클립스 버그로 인한 에러이므로 무시합니다. -->
-	<c:set var="intArray" value="${[1,2,3,4,5]}" />
+	<c:set var="intArray" value="" />
 	<p>
 		product1(jstl) :
 		<c:out value="${product1}" default="Not registered" escapeXml="true"></c:out>
