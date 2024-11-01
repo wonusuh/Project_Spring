@@ -33,7 +33,14 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.200</version>
-			<scope>test</scope>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+		<!-- 쉬운 매핑을 위한 의존성주입입니다. -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.4</version>
 		</dependency>
 	</dependencies>
 </project>
