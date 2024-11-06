@@ -157,4 +157,6 @@ public class NewsController extends HttpServlet {
 		}
 		return "redirect:/news.nhn?action=listNews";
 	}
+
+	/** 리액트 교재를 마치고 이어서 공부합니다. */
 }
