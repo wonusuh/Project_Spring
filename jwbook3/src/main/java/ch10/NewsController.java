@@ -22,8 +22,10 @@ import org.apache.commons.beanutils.BeanUtils;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 2, location = "C:\\wonuSuhGram\\temporaryImages")
 public class NewsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	private NewsDAO dao;
 	private ServletContext ctx;
+
 	// 웹 리소스 기본경로 지정
 	private final String START_PAGE = "ch10/newsList.jsp";
 
@@ -42,7 +44,7 @@ public class NewsController extends HttpServlet {
 
 		dao = new NewsDAO();
 
-		// 자바 리플레션을 사용해 if(switch) 없이 요청에 따라 구현 메서드가 실행되도록 구성합니다.
+		// 자바 리플렉션을 사용해 if(switch) 없이 요청에 따라 구현 메서드가 실행되도록 구성합니다.
 		Method m;
 		String view = null;
 
@@ -91,7 +93,7 @@ public class NewsController extends HttpServlet {
 			BeanUtils.populate(n, req.getParameterMap());
 
 			// 이미지 파일 이름을 NewsVO 객체에도 저장
-			n.setImg("/img" + fileName);
+			n.setImg("/img/" + fileName);
 
 			dao.addNews(n);
 		} catch (Exception e) {
@@ -158,5 +160,5 @@ public class NewsController extends HttpServlet {
 		return "redirect:/news.nhn?action=listNews";
 	}
 
-	/** 리액트 교재를 마치고 이어서 공부합니다. test*/
+	/** 리액트 교재를 마치고 이어서 공부합니다. test */
 }
