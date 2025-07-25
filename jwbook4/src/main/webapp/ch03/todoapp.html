@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>실습 3-2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container bg-warning shadow mx-auto mt-5 p-5 w-75">
+      <h2>My ToDo Application</h2>
+
+      <hr />
+
+      <div class="input-group">
+        <input
+          class="form-control"
+          id="item"
+          type="text"
+          placeholder="할일을 입력하세요.."
+        />
+        <button class="btn btn-primary" type="button" onClick="addItem()">
+          할일 추가
+        </button>
+      </div>
+
+      <hr />
+
+      <ul class="list-group" id="todolist"></ul>
+    </div>
+
+    <script type="text/javascript">
+      /**
+       * "할일 추가" 버튼 클릭 이벤트
+       */
+      const addItem = () => {
+        // 입력값을 읽어와 todo 변수에 저장
+        const todo = document.getElementById("item");
+        // <ul> 요소를 참조하여 list 변수에 저장
+        const list = document.getElementById("todolist");
+        // 새로운 <li> 요소를 생성하여 listitem 변수에 저장
+        const listitem = document.createElement("li");
+        // 새로운 목록에 디자인 추가
+        listitem.className =
+          "d-flex list-group-item list-group-item-action list-group-item-warning";
+        // 텍스트 노드 추가
+        const textNode = document.createTextNode(todo.value);
+        // <li> 요소에 텍스트 노드 추가
+        listitem.appendChild(textNode);
+        // <li> 요소에 들어갈 닫기 버튼 생성
+        const xbtn = document.createElement("button");
+        // 버튼에 클릭 이벤트 핸들러 추가
+        xbtn.onclick = (e) => {
+          // 이벹트가 발생산 <li> 요소를 구하여 <ul> 요소로부터 제거
+          const pnode = e.target.parentNode;
+          list.removeChild(pnode);
+        };
+        // 버튼에 부트스트랩 클래스 적용
+        xbtn.className = "btn-close ms-auto";
+        // <li> 에 버튼 추가
+        listitem.appendChild(xbtn);
+        // <ul> 요소에 <li> 요소를 추가
+        list.appendChild(listitem);
+        // 입력칸 비우기 및 포커스 이동
+        todo.value = "";
+        todo.focus();
+      };
+    </script>
+  </body>
+</html>
