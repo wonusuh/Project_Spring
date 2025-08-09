@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Calculator</title>
+  </head>
+  <body>
+    <h2>계산기 서블릿</h2>
+    <hr />
+    <form method="post" action="/jwbook4/calc">
+      <input type="text" name="num1" size="10" />
+      <select name="operator">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+      </select>
+      <input type="text" name="num2" size="10" />
+      <input type="submit" value="실행" />
+    </form>
+  </body>
+</html>
