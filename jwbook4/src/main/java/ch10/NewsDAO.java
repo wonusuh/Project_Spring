@@ -28,13 +28,13 @@ public class NewsDAO {
 	public void addNews(News n) throws Exception {
 		Connection conn = open();
 
-		String sql = "INSER INTO news(title, img, date, content) VALUES(?, ?, CURRENT_TIMESTAMP(), ?);";
+		String sql = "INSERT INTO news(title, img, date, content) VALUES(?, ?, CURRENT_TIMESTAMP(), ?);";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		try (conn; pstmt) {
 			pstmt.setString(1, n.getTitle());
 			pstmt.setString(2, n.getImg());
-			pstmt.setString(4, n.getContent());
+			pstmt.setString(3, n.getContent());
 			pstmt.executeUpdate();
 		}
 	}
@@ -43,7 +43,7 @@ public class NewsDAO {
 		Connection conn = open();
 		List<News> newsList = new ArrayList<>();
 
-		String sql = "SELECT aid, title, PARSEDATETIME(date, 'yyyy-MM-dd hh:mm:ss') as cdate FROM news;";
+		String sql = "SELECT aid, title, PARSEDATETIME(date, 'yyyy-MM-dd HH:mm:ss.SSSSSS') as cdate FROM news";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 
@@ -65,7 +65,7 @@ public class NewsDAO {
 		Connection conn = open();
 
 		News n = new News();
-		String sql = "SELECT aid, title, img, PARSEDATETIME(date, 'yyyy-MM-dd hh:mm:ss') as cdate, content FROM news WHERE aid ?;";
+		String sql = "SELECT aid, title, img, PARSEDATETIME(date, 'yyyy-MM-dd HH:mm:ss.SSSSSS') as cdate, content FROM news WHERE aid = ?;";
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, aid);
