@@ -38,7 +38,7 @@ public class NewsController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8"); // 한글 깨짐현상을 방지하기위한 설정입니다.
+//		request.setCharacterEncoding("UTF-8"); // 한글 깨짐현상을 방지하기위한 설정입니다.
 		String action = request.getParameter("action");
 
 		dao = new NewsDAO();

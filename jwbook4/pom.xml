@@ -16,7 +16,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.13.0</version>
 				<configuration>
-					<release>23</release>
+					<release>21</release>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -35,12 +35,32 @@
 		    <artifactId>h2</artifactId>
 		    <version>2.1.214</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
 		<dependency>
 		    <groupId>commons-beanutils</groupId>
 		    <artifactId>commons-beanutils</artifactId>
 		    <version>1.9.4</version>
 		</dependency>
+
+<!-- Jersey 3.x 안정 버전 -->
+<dependency>
+    <groupId>org.glassfish.jersey.containers</groupId>
+    <artifactId>jersey-container-servlet</artifactId>
+    <version>2.47</version>
+</dependency>
+
+<dependency>
+    <groupId>org.glassfish.jersey.inject</groupId>
+    <artifactId>jersey-hk2</artifactId>
+    <version>2.47</version>
+</dependency>
+
+<dependency>
+    <groupId>org.glassfish.jersey.media</groupId>
+    <artifactId>jersey-media-json-jackson</artifactId>
+    <version>2.47</version>
+</dependency>
+		
 	</dependencies>
 </project>
