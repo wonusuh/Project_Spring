@@ -59,12 +59,35 @@
 			<scope>provided</scope>
 		</dependency>
 		
+<!-- jstl -->
+<!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
+<dependency>
+	<groupId>jakarta.servlet.jsp.jstl</groupId>
+	<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+	<version>3.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+<dependency>
+	<groupId>jakarta.servlet</groupId>
+	<artifactId>jakarta.servlet-api</artifactId>
+	<version>6.0.0</version>
+	<scope>provided</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
+<dependency>
+	<groupId>org.glassfish.web</groupId>
+	<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+	<version>3.0.1</version>
+</dependency>
+		
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-	        <version>1.2</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		    <scope>runtime</scope>
 		</dependency>
-			
+					
 		
 	</dependencies>
 
