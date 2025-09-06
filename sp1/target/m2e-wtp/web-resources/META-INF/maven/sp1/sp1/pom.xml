@@ -60,6 +60,43 @@
 			<version>2.24.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>6.2.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.11.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Spring Transaction -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>6.1.6</version> <!-- Spring 버전에 맞춰 조정 -->
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -75,6 +112,8 @@
 					<release>17</release>
 				</configuration>
 			</plugin>
+
+
 		</plugins>
 	</build>
 </project>
