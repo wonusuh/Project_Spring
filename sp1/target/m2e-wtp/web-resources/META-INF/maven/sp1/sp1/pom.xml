@@ -116,6 +116,21 @@
 			<version>6.2.6</version> <!-- Spring 버전에 맞춰 조정 -->
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.22</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.9.22</version>
+			<scope>runtime</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -131,8 +146,6 @@
 					<release>17</release>
 				</configuration>
 			</plugin>
-
-
 		</plugins>
 	</build>
 </project>

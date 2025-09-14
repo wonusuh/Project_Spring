@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
@@ -12,6 +13,10 @@
 		https://www.springframework.org/schema/context/spring-context.xsd
 		http://mybatis.org/schema/mybatis-spring
 		http://mybatis.org/schema/mybatis-spring.xsd
+		http://www.springframework.org/schema/aop
+		https://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
 		">
 
 	<!-- bean definitions here -->
@@ -29,7 +34,6 @@
 		<property name="minimumIdle" value="2" />
 	</bean>
 
-
 	<bean name="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
@@ -41,7 +45,24 @@
 			value="classpath:/mapper/*.xml" />
 	</bean>
 
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
 	<mybatis-spring:scan
 		base-package="org.zerock.mapper" />
+
+	<context:component-scan
+		base-package="org.zerock.aop"></context:component-scan>
+
+	<aop:aspectj-autoproxy />
+
+	<!-- 교재 누락 -->
+	<context:component-scan
+		base-package="org.zerock.controller" />
+	<!-- // 교재 누락 -->
+
+	<tx:annotation-driven />
 
 </beans>
