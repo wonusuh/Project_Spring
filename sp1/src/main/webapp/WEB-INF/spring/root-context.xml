@@ -39,11 +39,9 @@
 		<constructor-arg ref="hikariConfig" />
 	</bean>
 
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-		<property name="mapperLocations"
-			value="classpath:/mapper/*.xml" />
-	</bean>
+	<!-- <bean class="org.mybatis.spring.SqlSessionFactoryBean"> <property name="dataSource" 
+		ref="dataSource"></property> <property name="mapperLocations" value="classpath:/mapper/*.xml" 
+		/> </bean> -->
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -64,5 +62,13 @@
 	<!-- // 교재 누락 -->
 
 	<tx:annotation-driven />
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations"
+			value="classpath:/mapper/*.xml" />
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml" />
+	</bean>
 
 </beans>
