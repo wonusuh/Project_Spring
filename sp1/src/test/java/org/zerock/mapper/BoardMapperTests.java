@@ -19,44 +19,58 @@ public class BoardMapperTests {
 	@Autowired
 	private BoardMapper boardMapper;
 
-	@Test
-	public void testInsert() {
-		BoardDTO boardDTO = BoardDTO.builder().title("title").content("content").writer("user00").build();
-		long insertCount = boardMapper.insert(boardDTO);
-		log.info("-------------------------------");
-		log.info("insert count: " + insertCount);
-		log.info("-------------------------------");
-		log.info("BNO : " + boardDTO.getBno());
-	}
+//	@Test
+//	public void testInsert() {
+//		BoardDTO boardDTO = BoardDTO.builder().title("title").content("content").writer("user00").build();
+//		long insertCount = boardMapper.insert(boardDTO);
+//		log.info("-------------------------------");
+//		log.info("insert count: " + insertCount);
+//		log.info("-------------------------------");
+//		log.info("BNO : " + boardDTO.getBno());
+//	}
+//
+//	@Test
+//	public void testSelectOne() {
+//		Long bno = 2L;
+//		BoardDTO board = boardMapper.selectOne(bno);
+//		log.info("board : " + board);
+//	}
+//
+//	@Test
+//	public void testRemove() {
+//		Long bno = 2L;
+//		int removeCount = boardMapper.remove(bno);
+//		log.info("delete count : " + removeCount);
+//	}
+//
+//	@Test
+//	public void testUpdate() {
+//		BoardDTO boardDTO = BoardDTO.builder().bno(2L).title("updated title").content("updated content").delFlag(false)
+//				.build();
+//		int updateCount = boardMapper.update(boardDTO);
+//		log.info("---------------------------------------");
+//		log.info("update count : " + updateCount);
+//	}
+//
+//	@Test
+//	public void testList() {
+//		List<BoardDTO> dtoList = boardMapper.list();
+//		log.info("-------------------------------dtoList-------------------------------");
+//		log.info(dtoList);
+//		dtoList.stream().forEach((dto) -> {
+//			log.info(dto);
+//		});
+//	}
 
 	@Test
-	public void testSelectOne() {
-		Long bno = 2L;
-		BoardDTO board = boardMapper.selectOne(bno);
-		log.info("board : " + board);
-	}
+	public void testList2() {
+		int page = 2;
 
-	@Test
-	public void testRemove() {
-		Long bno = 2L;
-		int removeCount = boardMapper.remove(bno);
-		log.info("delete count : " + removeCount);
-	}
+		// 계산
+		int skip = (page - 1) * 10;
+		int count = 10;
 
-	@Test
-	public void testUpdate() {
-		BoardDTO boardDTO = BoardDTO.builder().bno(2L).title("updated title").content("updated content").delFlag(false)
-				.build();
-		int updateCount = boardMapper.update(boardDTO);
-		log.info("---------------------------------------");
-		log.info("update count : " + updateCount);
-	}
-
-	@Test
-	public void testList() {
-		List<BoardDTO> dtoList = boardMapper.list();
-		log.info("-------------------------------dtoList-------------------------------");
-		log.info(dtoList);
+		List<BoardDTO> dtoList = boardMapper.list2(skip, count);
 		dtoList.stream().forEach((dto) -> {
 			log.info(dto);
 		});
