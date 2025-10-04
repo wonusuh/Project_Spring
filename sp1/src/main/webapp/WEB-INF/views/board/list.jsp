@@ -21,12 +21,13 @@ file="/WEB-INF/views/includes/header.jsp"%>
             </tr>
           </thead>
           <tbody class="tbody">
-            <c:forEach var="board" items="${list}">
+            <c:forEach var="board" items="${dto.boardDTOList}">
               <tr data-bno="${board.bno}">
                 <td>
                   <a href="/board/read/${board.bno}">
-                    <c:out value="${board.bno}" /></td>
+                    <c:out value="${board.bno}" />
                   </a>
+                </td>
                 <td><c:out value="${board.title}" /></td>
                 <td><c:out value="${board.writer}" /></td>
                 <td><c:out value="${board.createdDate}" /></td>
@@ -34,6 +35,29 @@ file="/WEB-INF/views/includes/header.jsp"%>
             </c:forEach>
           </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+          <ul class="pagination">
+            <c:if test="${dto.prev}">
+              <li class="page-item">
+                <a class="page-link" href="${ dto.start - 1 }" tabindex="-1">
+                  Previous
+                </a>
+              </li>
+            </c:if>
+
+            <c:forEach var="num" items="${dto.pageNums}">
+              <li class="page-item ${dto.page == num ? 'active':'' }">
+                <a class="page-link" href="${num}"> ${num} </a>
+              </li>
+            </c:forEach>
+
+            <c:if test="${dto.next}">
+              <li class="page-item">
+                <a class="page-link" href="${ dto.end + 1 }">Next</a>
+              </li>
+            </c:if>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -71,14 +95,29 @@ file="/WEB-INF/views/includes/header.jsp"%>
 <!-- // 모달 -->
 
 <script type="text/javascript" defer="defer">
+  // 모달
   const result = "${result}";
   const myModal = new bootstrap.Modal(document.getElementById("myModal"));
   console.log(myModal);
-
-  //
   if (result) {
     myModal.show();
   }
+
+  // 페이징
+  const pagingDiv = document.querySelector(".pagination");
+  pagingDiv.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const target = e.target;
+    // console.log(target);
+    const targetPage = target.getAttribute("href");
+    const mySize = "${dto.size}" || 10;
+    const params = new URLSearchParams({
+      page: targetPage,
+      size: mySize,
+    });
+    self.location = `/board/list?\${params.toString()}`;
+  });
 </script>
 
 <%@include file="/WEB-INF/views/includes/footer.jsp"%>
