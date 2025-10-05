@@ -1,13 +1,10 @@
 package org.zerock.mapper;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.zerock.dto.BoardDTO;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -62,17 +59,32 @@ public class BoardMapperTests {
 //		});
 //	}
 
+//	@Test
+//	public void testList2() {
+//		int page = 2;
+//
+//		// 계산
+//		int skip = (page - 1) * 10;
+//		int count = 10;
+//
+//		List<BoardDTO> dtoList = boardMapper.list2(skip, count);
+//		dtoList.stream().forEach((dto) -> {
+//			log.info(dto);
+//		});
+//	}
+
 	@Test
-	public void testList2() {
+	public void testSearch() {
 		int page = 2;
 
 		// 계산
 		int skip = (page - 1) * 10;
 		int count = 10;
 
-		List<BoardDTO> dtoList = boardMapper.list2(skip, count);
-		dtoList.stream().forEach((dto) -> {
-			log.info(dto);
-		});
+		String[] types = new String[] { "T", "C", "W" };
+//		String keyword = "Test";
+		String keyword = null;
+
+		boardMapper.listSearch(skip, count, types, keyword);
 	}
 }
