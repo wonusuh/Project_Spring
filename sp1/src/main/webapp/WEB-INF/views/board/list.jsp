@@ -50,7 +50,10 @@
                         	</a>
                         </td>
                         	
-                        <td><c:out value="${board.title}"/></td>
+                        <td>
+							<c:out value="${board.title}"/>
+							<b style="color: navy;">[ <c:out value="${board.replyCnt}"></c:out> ]</b>
+						</td>
                         <td><c:out value="${board.writer}"/></td>
                         <td><c:out value="${board.createdDate}"/></td>
                     </tr>
