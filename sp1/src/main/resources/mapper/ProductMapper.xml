@@ -68,4 +68,20 @@
 		WHERE pno = #{pno}
 	</update>
 
+	<select id="list">
+		SELECT p.pno, pname, pdesc, price, sale, writer,
+		p.regdate, ino, uuid, filename, ord
+		FROM tbl_product AS p LEFT OUTER
+		JOIN tbl_product_image AS pimg
+		ON p.pno = pimg.pno
+		WHERE pimg.ord = 0
+		ORDER BY p.pno DESC
+		LIMIT #{count} OFFSET #{skip}
+	</select>
+
+	<select id="listCount">
+		SELECT COUNT(*)
+		FROM tbl_product AS p
+	</select>
+
 </mapper>
