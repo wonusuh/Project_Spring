@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class ProductListPagingDTO {
-	private List<ProductListDTO> productListDTO;
+	private List<ProductListDTO> productDTOList;
 	private int totalCount;
 	private int page, size;
 	private int start, end;
@@ -15,7 +15,7 @@ public class ProductListPagingDTO {
 	private List<Integer> pageNums;
 
 	public ProductListPagingDTO(List<ProductListDTO> productDTOList, int totalCount, int page, int size) {
-		this.productListDTO = productDTOList;
+		this.productDTOList = productDTOList;
 		this.totalCount = totalCount;
 		this.page = page;
 		this.size = size;
