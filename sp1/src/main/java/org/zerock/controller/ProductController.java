@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,15 +19,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.dto.ProductDTO;
+import org.zerock.dto.ProductListPagingDTO;
+import org.zerock.service.ProductService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/product")
 @Log4j2
+@RequiredArgsConstructor
 public class ProductController {
-// 나중에 서비스 주입이 필요함
+	private final ProductService service;
 
 	@GetMapping("register")
 	public void registerGET() {
@@ -35,7 +40,7 @@ public class ProductController {
 
 	@PostMapping("register")
 	public String register(ProductDTO productDTO, @RequestParam("files") MultipartFile[] files,
-			RedirectAttributes reArt) {
+			RedirectAttributes reAtr) {
 		log.info("--------------------------------------------------------");
 		log.info(productDTO);
 		log.info(files);
@@ -50,6 +55,8 @@ public class ProductController {
 			productDTO.addImage(uuid, fileName);
 		});
 
+		Integer pno = service.register(productDTO);
+		reAtr.addFlashAttribute("product", pno);
 		return "redirect:/product/list";
 	}
 
@@ -119,5 +126,12 @@ public class ProductController {
 		} finally {
 			//
 		}
+	}
+
+	@GetMapping("list")
+	public void list(@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "10") int size, Model model) {
+		ProductListPagingDTO dto = service.getList(page, size);
+		model.addAttribute("dto", dto);
 	}
 }
