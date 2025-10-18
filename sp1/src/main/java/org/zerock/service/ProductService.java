@@ -37,4 +37,8 @@ public class ProductService {
 		int total = productMapper.listCount();
 		return new ProductListPagingDTO(list, total, page, size);
 	}
+
+	public ProductDTO read(Integer pno) {
+		return productMapper.selectOne(pno);
+	}
 }
