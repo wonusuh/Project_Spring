@@ -112,10 +112,16 @@ file="/WEB-INF/views/includes/header.jsp"%>
 
 <script type="text/javascript" defer="defer">
   const pno = `${product}`;
+  const result = `${result}`;
   const myModal = new bootstrap.Modal(document.getElementById("myModal"));
 
   //
-  if (pno) {
+  if (result) {
+    document.querySelector(".modal-body").innerHTML = result;
+  }
+
+  //
+  if (pno || result) {
     myModal.show();
   }
 

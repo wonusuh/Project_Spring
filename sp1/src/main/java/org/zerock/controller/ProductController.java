@@ -142,4 +142,45 @@ public class ProductController {
 		model.addAttribute("product", service.read(pno));
 		return "/product/read";
 	}
+
+	@GetMapping("modify/{pno}")
+	public String modifyGET(@PathVariable("pno") Integer pno, Model model) {
+		log.info("pno : " + pno);
+		model.addAttribute("product", service.read(pno));
+		return "/product/modify";
+	}
+
+	@PostMapping("remove")
+	public String remove(@RequestParam("pno") Integer pno, RedirectAttributes rttr) {
+		service.remove(pno);
+		rttr.addFlashAttribute("result", "deleted");
+		return "redirect:/product/list";
+	}
+
+	@PostMapping("modify")
+	public String modifyPost(ProductDTO productDTO, @RequestParam("oldImages") String[] oldImages,
+			@RequestParam("files") MultipartFile[] files) {
+		List<String> newFileNames = uploadFiles(files);
+
+		// oldImages
+		if (oldImages != null && oldImages.length > 0) {
+			for (String oldImage : oldImages) {
+				String uuid = oldImage.substring(0, 36);
+				String fileName = oldImage.substring(37);
+				productDTO.addImage(uuid, fileName);
+			}
+		}
+
+		// new
+		if (newFileNames != null && newFileNames.size() > 0) {
+			for (String newImage : newFileNames) {
+				String uuid = newImage.substring(0, 36);
+				String fileName = newImage.substring(37);
+				productDTO.addImage(uuid, fileName);
+			}
+		}
+
+		service.modify(productDTO);
+		return "redirect:/product/read/" + productDTO.getPno();
+	}
 }
