@@ -142,4 +142,18 @@ public class ProductController {
 		model.addAttribute("product", service.read(pno));
 		return "/product/read";
 	}
+
+	@GetMapping("modify/{pno}")
+	public String modifyGET(@PathVariable("pno") Integer pno, Model model) {
+		log.info("pno : " + pno);
+		model.addAttribute("product", service.read(pno));
+		return "/product/modify";
+	}
+
+	@PostMapping("remove")
+	public String remove(@RequestParam("pno") Integer pno, RedirectAttributes rttr) {
+		service.remove(pno);
+		rttr.addFlashAttribute("result", "deleted");
+		return "redirect:/product/list";
+	}
 }

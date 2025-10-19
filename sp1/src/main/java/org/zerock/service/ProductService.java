@@ -41,4 +41,14 @@ public class ProductService {
 	public ProductDTO read(Integer pno) {
 		return productMapper.selectOne(pno);
 	}
+
+	public void remove(Integer pno) {
+		productMapper.deleteOne(pno);
+	}
+
+	public void modify(ProductDTO productDTO) {
+		productMapper.deleteImages(productDTO.getPno()); // 기존이미지 삭제
+		productMapper.updateOne(productDTO); // 상품정보 수정
+		productMapper.insertImages(productDTO); // 상품이미지 갱신
+	}
 }
