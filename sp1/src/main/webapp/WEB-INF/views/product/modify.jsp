@@ -150,6 +150,32 @@ file="/WEB-INF/views/includes/header.jsp" %>
     },
     false
   );
+
+  document.querySelector(".btnModify").addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    form1.action = "/product/modify";
+    form1.method = "post";
+
+    const imageArr = document.querySelectorAll(".productImages button");
+
+    if (imageArr) {
+      let str = "";
+
+      for (let image of imageArr) {
+        const imageFile = image.getAttribute("data-file");
+
+        str += `<input type='hidden' name='oldImages' value='\${imageFile}'>`;
+      } //end for
+
+      form1
+        .querySelector("div:last-child")
+        .insertAdjacentHTML("beforeend", str);
+    }
+
+    form1.submit();
+  });
 </script>
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>
