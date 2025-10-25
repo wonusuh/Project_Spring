@@ -71,4 +71,7 @@
 			value="classpath:mybatis-config.xml" />
 	</bean>
 
+	<context:component-scan
+		base-package="org.zerock.security"></context:component-scan>
+
 </beans>
