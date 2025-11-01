@@ -34,46 +34,49 @@ public class AccountDTO implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		//
-		if (roleNames == null || roleNames.size() == 0) {
+		// roleNames가 비어있으면 빈 리스트 반환
+		if (roleNames == null || roleNames.isEmpty()) {
 			return List.of();
 		}
 
-		return roleNames.stream().map((accountRole) ->
-		{
-			new SimpleGrantedAuthority("ROLE_" + accountRole.name());
-			
-		}
-				).collect(Collectors.toList());
+		// Stream을 이용해서 AccountRole -> SimpleGrantedAuthority 변환
+		return roleNames.stream().map((accountRole) -> {
+			// 각 역할에 ROLE_ 접두어 붙이기
+			return new SimpleGrantedAuthority("ROLE_" + accountRole.name());
+		}).collect(Collectors.toList());
 	}
 
 	@Override
 	public String getPassword() {
-		return null;
+		return upw;
 	}
 
 	@Override
 	public String getUsername() {
-		return null;
+		return uname;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return false;
+		// 만료되지 않았음
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return false;
+		// 잠긴 계정 아님
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return false;
+		// 인증정보 활용 가능함
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return false;
+		// 사용 가능
+		return true;
 	}
 }
