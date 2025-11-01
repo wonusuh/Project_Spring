@@ -1,5 +1,6 @@
 package org.zerock.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,18 +78,14 @@ public class BoardController {
 
 	}
 
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("read/{bno}")
 	public String read(@PathVariable("bno") Long bno, Model model) {
-
 		log.info("---------------------------------------");
 		log.info("board read");
-
 		BoardDTO dto = boardService.read(bno);
-
 		model.addAttribute("board", dto);
-
 		return "/board/read";
-
 	}
 
 	@GetMapping("modify/{bno}")
@@ -106,15 +103,12 @@ public class BoardController {
 	}
 
 	@PostMapping("modify")
+	@PreAuthorize("authentication.name == #boardDTO.writer")
 	public String modifyPOST(BoardDTO boardDTO) {
-
 		log.info("---------------------------------------");
 		log.info("board modify post");
-
 		boardService.modify(boardDTO);
-
 		return "redirect:/board/read/" + boardDTO.getBno();
-
 	}
 
 	@PostMapping("remove")

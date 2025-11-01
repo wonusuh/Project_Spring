@@ -45,6 +45,7 @@ file="/WEB-INF/views/includes/header.jsp"%>
             <input
               type="text"
               class="form-control"
+              name="writer"
               value="<c:out value='${board.writer}'/>"
               readonly
             />

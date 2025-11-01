@@ -80,4 +80,9 @@ public class HelloController {
 	public void ex8() {
 		log.info("/sample/ex8");
 	}
+
+	@GetMapping("access-denied")
+	public String accessDenied() {
+		return "/sample/accessDenied";
+	}
 }
