@@ -1,18 +1,28 @@
-SELECT b.bno, title, content, writer, regDate, b.updatedate, COUNT(r.rno) replyCnt
-FROM tbl_board AS b LEFT OUTER JOIN tbl_reply AS r ON b.bno = r.bno
-WHERE b.delflag = FALSE
-GROUP  BY b.bno
-ORDER BY b.bno DESC;
+CREATE TABLE tbl_account (
+uid VARCHAR(50) PRIMARY KEY,
+upw VARCHAR(100) NOT NULL,
+uname VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE,
+enabled BOOLEAN DEFAULT TRUE,
+createdDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
-SELECT * FROM tbl_product;
-SELECT * FROM tbl_product_image;
+CREATE TABLE tbl_account_roles (
+uid VARCHAR(50) NOT NULL,
+rolename VARCHAR(50) NOT NULL,
+FOREIGN KEY (uid) REFERENCES tbl_account(uid) -- 동일 계정에 동일한 역할 중복 방지
+);
 
-SELECT p.pno, pname, pdesc, price, sale, writer, p.regdate, ino, UUID, filename, ORD
-FROM tbl_product AS p LEFT OUTER JOIN tbl_product_image AS pimg ON p.pno = pimg.pno
-WHERE p.pno = 1;
+SELECT * FROM tbl_account
+ORDER BY uid ASC;
 
-SELECT p.pno, pname, pdesc, price, sale, writer, p.regdate, ino, UUID, filename, ORD
-FROM tbl_product AS p LEFT OUTER JOIN tbl_product_image AS pimg ON p.pno = pimg.pno
-WHERE pimg.ord = 0
-ORDER BY p.pno DESC
-LIMIT 10 OFFSET 0;
+SELECT * FROM tbl_account_roles
+ORDER BY uid ASC;
+
+SELECT
+ac.uid, ac.upw, ac.uname, ac.email, ar.rolename
+FROM
+tbl_account AS ac INNER JOIN tbl_account_roles AS ar
+ON ac.uid = ar.uid
+WHERE ac.uid = 'user100';
