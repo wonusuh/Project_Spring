@@ -35,7 +35,7 @@ public class AccountDTO implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// roleNames가 비어있으면 빈 리스트 반환
-		if (roleNames == null || roleNames.isEmpty()) {
+		if (roleNames == null || roleNames.size() == 0) {
 			return List.of();
 		}
 
