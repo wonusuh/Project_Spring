@@ -26,3 +26,13 @@ FROM
 tbl_account AS ac INNER JOIN tbl_account_roles AS ar
 ON ac.uid = ar.uid
 WHERE ac.uid = 'user100';
+
+CREATE TABLE persistent_logins (
+username VARCHAR(64) NOT NULL,
+series VARCHAR(64) PRIMARY KEY,
+token VARCHAR(64) NOT NULL,
+last_used TIMESTAMP NOT NULL
+);
+
+SELECT *
+FROM persistent_logins;
