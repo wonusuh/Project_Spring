@@ -39,6 +39,10 @@ public class SecurityConfig {
 			config.tokenValiditySeconds(60 * 60 * 24 * 30);// 30일
 		});
 
+		http.logout((config) -> {
+			config.deleteCookies("JSESSIONID", "remember-me");
+		});
+
 		http.csrf((config) -> {
 			config.disable();
 		});
@@ -59,7 +63,7 @@ public class SecurityConfig {
 	public PersistentTokenRepository persistentTokenRepository() {
 		JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
 		tokenRepository.setDataSource(dataSource);
-//		tokenRepository.setCreateTableOnStartup(true);// 테이블 자동 생성하기 추천하지 않음
+//		 tokenRepository.setCreateTableOnStartup(true); // 테이블 자동 생성 - 추천하지 않음
 		return tokenRepository;
 	}
 }
