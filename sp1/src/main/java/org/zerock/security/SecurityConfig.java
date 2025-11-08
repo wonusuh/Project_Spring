@@ -19,7 +19,7 @@ public class SecurityConfig {
 		log.info("---------------------------security config------------------------------");
 
 		http.formLogin((config) -> {
-
+			config.loginPage("/account/login");
 		});
 
 		http.csrf((config) -> {
