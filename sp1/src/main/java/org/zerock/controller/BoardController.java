@@ -1,6 +1,7 @@
 package org.zerock.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.dto.AccountDTO;
 import org.zerock.dto.BoardDTO;
 import org.zerock.service.BoardService;
 
@@ -80,9 +82,14 @@ public class BoardController {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("read/{bno}")
-	public String read(@PathVariable("bno") Long bno, Model model) {
+	public String read(@AuthenticationPrincipal AccountDTO accountDTO, @PathVariable("bno") Long bno, Model model) {
 		log.info("---------------------------------------");
 		log.info("board read");
+
+		log.info("-----------------AccountDTO----------------------");
+		log.info(accountDTO);
+		log.info("-----------------AccountDTO----------------------");
+
 		BoardDTO dto = boardService.read(bno);
 		model.addAttribute("board", dto);
 		return "/board/read";
