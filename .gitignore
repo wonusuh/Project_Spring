@@ -1,6 +1,6 @@
 # Eclipse-specific files
 .metadata/
-# 서버는 깃에 올리지 않습니다.
+# 서버는 깃에 X
 Servers/
-# 이클립스 마켓플레이스에서 설치한 소나린트입니다.
+# 이클립스 마켓플레이스 소나린트
 .sonarlint/
