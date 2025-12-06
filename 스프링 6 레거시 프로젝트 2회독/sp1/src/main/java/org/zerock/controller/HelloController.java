@@ -1,9 +1,12 @@
 package org.zerock.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.dto.SampleDTO;
 import org.zerock.service.HelloService;
 
 import lombok.RequiredArgsConstructor;
@@ -43,5 +46,32 @@ public class HelloController {
 
     @GetMapping("/ex4")
     public void ex4(@RequestParam(name = "n1", defaultValue = "1") int num, @RequestParam(name = "name") String name) {
+	log.info("/sample/ex4");
+	log.info("num : " + num);
+	log.info("name : " + name);
+    }
+
+    @GetMapping("/ex5")
+    public void ex5(SampleDTO dto) {
+	log.info("/sample/ex5");
+	log.info(dto);
+    }
+
+    @GetMapping("/ex6")
+    public void ex6(Model model) {
+	model.addAttribute("name", "Wonu Suh");
+	model.addAttribute("age", 16);
+    }
+
+    @GetMapping("/ex7")
+    public String ex7(RedirectAttributes rttr) {
+	rttr.addAttribute("name", "Hong");
+	rttr.addFlashAttribute("age", 16);
+	return "redirect:/sample/ex8";
+    }
+
+    @GetMapping("/ex8")
+    public void ex8() {
+	log.info("/sample/ex8");
     }
 }
