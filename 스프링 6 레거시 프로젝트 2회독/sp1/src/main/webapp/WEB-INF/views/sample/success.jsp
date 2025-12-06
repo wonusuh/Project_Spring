@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Ex1 JSP</h1>
+	<h1>Success JSP Page</h1>
 </body>
 </html>
