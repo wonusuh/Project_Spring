@@ -10,8 +10,14 @@
 
   <!-- Logger 설정 -->
   <Loggers>
-    <Logger name="org.springframework" level="DEBUG"
+    <Logger name="com.zaxxer" level="DEBUG" additivity="false">
+      <AppenderRef ref="console" />
+    </Logger>
+    <Logger name="org.springframework" level="INFO"
       additivity="false">
+      <AppenderRef ref="console" />
+    </Logger>
+    <Logger name="org.zerock" level="DEBUG" additivity="false">
       <AppenderRef ref="console" />
     </Logger>
 
