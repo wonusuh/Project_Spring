@@ -29,3 +29,5 @@ regdate TIMESTAMP DEFAULT NOW(),
 updatedate TIMESTAMP DEFAULT NOW(),
 delflag BOOLEAN DEFAULT FALSE
 );
+
+SELECT * FROM tbl_board;

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-class BoardDTO {
+public class BoardDTO {
     private Long bno;
     private String title;
     private String writer;
