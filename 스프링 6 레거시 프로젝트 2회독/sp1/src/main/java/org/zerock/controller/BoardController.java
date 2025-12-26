@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.dto.BoardDTO;
 import org.zerock.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,9 +34,11 @@ public class BoardController {
     }
 
     @PostMapping("/register")
-    public String registerPost() {
+    public String registerPost(BoardDTO dto, RedirectAttributes rttr) {
 	log.info("------------------------------------------------------------------------------------------");
 	log.info("board register post");
+	Long bno = boardService.register(dto);
+	rttr.addFlashAttribute("result", bno);
 	return "redirect:/board/list";
     }
 
