@@ -31,3 +31,20 @@ delflag BOOLEAN DEFAULT FALSE
 );
 
 SELECT * FROM tbl_board;
+
+INSERT INTO tbl_board (title, content, writer)
+SELECT title, content, writer
+FROM tbl_board;
+
+SELECT *
+FROM tbl_board
+WHERE bno > 0
+AND delflag = FALSE
+ORDER BY bno DESC;
+
+SELECT *
+FROM tbl_board
+WHERE bno > 0
+AND delflag = FALSE
+ORDER BY bno DESC
+LIMIT 10 OFFSET 10;
