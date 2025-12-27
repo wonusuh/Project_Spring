@@ -26,4 +26,17 @@ public class BoardService {
 	log.info("insertCount : " + insertCount);
 	return dto.getBno();
     }
+
+    public BoardDTO read(Long bno) {
+	BoardDTO boardDTO = boardMapper.selectOne(bno);
+	return boardDTO;
+    }
+
+    public void remove(Long bno) {
+	boardMapper.remove(bno);
+    }
+
+    public void modify(BoardDTO boardDTO) {
+	boardMapper.update(boardDTO);
+    }
 }
