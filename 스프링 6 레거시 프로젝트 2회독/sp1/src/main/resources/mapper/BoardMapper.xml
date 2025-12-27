@@ -47,4 +47,14 @@
     ORDER BY bno DESC
   </select>
 
+  <select id="list2" resultType="BoardDTO">
+    SELECT
+    bno, title, writer, regDate
+    FROM tbl_board
+    WHERE delflag = false
+    ORDER BY bno DESC
+    LIMIT #{count}
+    OFFSET #{skip}
+  </select>
+
 </mapper>
