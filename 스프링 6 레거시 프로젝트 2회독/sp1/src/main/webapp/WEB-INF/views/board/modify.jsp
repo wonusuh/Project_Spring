@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/includes/header.jsp"%>
+pageEncoding="UTF-8"%> <%@taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%> <%@ include
+file="/WEB-INF/views/includes/header.jsp"%>
 
 <div class="row justify-content-center">
   <div class="col-lg-12">
@@ -10,35 +12,53 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 
       <div class="card-body">
         <form id="actionForm" action="/board/modify" method="post">
-          <!-- <div class="mb-3 input-group input-group-lg">
-						<span class="input-group-text">Bno</span> <input type="text"
-							name="bno" class="form-control"
-							value="<c:out value='${board.bno}'/>" readonly>
-					</div>
+          <div class="mb-3 input-group input-group-lg">
+            <span class="input-group-text">Bno</span>
+            <input
+              type="text"
+              name="bno"
+              class="form-control"
+              value="<c:out value='${board.bno}'/>"
+              readonly
+            />
+          </div>
 
-					<div class="mb-3 input-group input-group-lg">
-						<span class="input-group-text">Title</span> <input type="text"
-							name="title" class="form-control"
-							value="<c:out value='${board.title}'/>">
-					</div>
+          <div class="mb-3 input-group input-group-lg">
+            <span class="input-group-text">Title</span>
+            <input
+              type="text"
+              name="title"
+              class="form-control"
+              value="<c:out value='${board.title}'/>"
+            />
+          </div>
 
-					<div class="mb-3 input-group input-group-lg">
-						<span class="input-group-text">Content</span>
-						<textarea class="form-control" name="content" rows="3"><c:out
-								value="${board.content}" /></textarea>
-					</div>
+          <div class="mb-3 input-group input-group-lg">
+            <span class="input-group-text">Content</span>
+            <textarea class="form-control" name="content" rows="3">
+              <c:out value="${board.content}" /></textarea
+            >
+          </div>
 
-					<div class="mb-3 input-group input-group-lg">
-						<span class="input-group-text">Writer</span> <input type="text"
-							class="form-control" value="<c:out value='${board.writer}'/>"
-							readonly>
-					</div>
+          <div class="mb-3 input-group input-group-lg">
+            <span class="input-group-text">Writer</span>
+            <input
+              type="text"
+              class="form-control"
+              value="<c:out value='${board.writer}'/>"
+              readonly
+            />
+          </div>
 
-					<div class="mb-3 input-group input-group-lg">
-						<span class="input-group-text">RegDate</span> <input type="text"
-							class="form-control"
-							value="<c:out value='${board.createdDate}'/>" readonly>
-					</div> -->
+          <div class="mb-3 input-group input-group-lg">
+            <span class="input-group-text">RegDate</span>
+            <input
+              type="text"
+              class="form-control"
+              value="<c:out value='${board.createdDate}'/>"
+              readonly
+            />
+          </div>
         </form>
 
         <div class="float-end">
@@ -54,8 +74,10 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 </div>
 
 <script type="text/javascript">
+  // form
   const formObj = document.querySelector("#actionForm");
 
+  // 수정
   document.querySelector(".btnModify").addEventListener(
     "click",
     () => {
@@ -66,6 +88,7 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/includes/header.jsp"%>
     false
   );
 
+  // 목록으로
   document.querySelector(".btnList").addEventListener(
     "click",
     () => {
@@ -76,6 +99,7 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/includes/header.jsp"%>
     false
   );
 
+  // 삭제
   document.querySelector(".btnRemove").addEventListener(
     "click",
     () => {
