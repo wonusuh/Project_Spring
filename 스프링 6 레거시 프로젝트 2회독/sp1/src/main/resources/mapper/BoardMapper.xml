@@ -57,4 +57,10 @@
     OFFSET #{skip}
   </select>
 
+  <select id="listCount" resultType="int">
+    SELECT count(bno)
+    FROM tbl_board
+    WHERE delFlag = false
+  </select>
+
 </mapper>
