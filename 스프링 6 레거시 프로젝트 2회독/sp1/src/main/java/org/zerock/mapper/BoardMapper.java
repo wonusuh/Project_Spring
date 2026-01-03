@@ -17,4 +17,6 @@ public interface BoardMapper {
     List<BoardDTO> list();
 
     List<BoardDTO> list2(@Param("skip") int skip, @Param("count") int count);
+
+    int listCount();
 }
