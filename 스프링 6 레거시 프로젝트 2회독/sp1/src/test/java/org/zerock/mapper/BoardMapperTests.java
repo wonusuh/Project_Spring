@@ -88,7 +88,11 @@ public class BoardMapperTests {
 	int skip = (page - 2) * 10;
 	int count = 10;
 
-	String[] types = new String[] { "T", "C", "W" };
+	String[] types = new String[] { 
+//		"T", //
+//		"C", //
+//		"W" //
+	};
 	String keyword = "Test";
 
 	boardMapper.listSearch(skip, count, types, keyword);
