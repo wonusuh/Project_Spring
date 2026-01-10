@@ -79,4 +79,18 @@ public class BoardMapperTests {
 	    log.info(dto);
 	});
     }
+
+    @Test
+    public void testSearch() {
+	int page = 2;
+
+// 계산
+	int skip = (page - 2) * 10;
+	int count = 10;
+
+	String[] types = new String[] { "T", "C", "W" };
+	String keyword = "Test";
+
+	boardMapper.listSearch(skip, count, types, keyword);
+    }
 }

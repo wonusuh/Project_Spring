@@ -59,8 +59,26 @@
 
   <select id="listCount" resultType="int">
     SELECT count(bno)
-    FROM tbl_board
+    FROM
+    tbl_board
     WHERE delFlag = false
+  </select>
+
+  <select id="listSearch" resultType="BoardDTO">
+    SELECT bno, title, writer,
+    regDate
+    FROM tbl_board
+    WHERE delflag = false
+
+    <if test="types != null and keyword != null ">
+      <foreach collection="types" item="type">
+        #{type}
+      </foreach>
+    </if>
+
+
+    ORDER BY bno DESC
+    LIMIT #{skip}, #{count}
   </select>
 
 </mapper>
