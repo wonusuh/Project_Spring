@@ -64,21 +64,39 @@
     WHERE delFlag = false
   </select>
 
+  <sql id="search">
+    <if test="types != null and keyword != null ">
+      <foreach collection="types" item="type" open="AND ("
+        close=")" separator=" OR ">
+        <if test='type.equals("T")'>
+          title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test='type.equals("C")'>
+          content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test='type.equals("W")'>
+          writer LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+      </foreach>
+    </if>
+  </sql>
+
   <select id="listSearch" resultType="BoardDTO">
     SELECT bno, title, writer,
     regDate
     FROM tbl_board
     WHERE delflag = false
-
-    <if test="types != null and keyword != null ">
-      <foreach collection="types" item="type">
-        #{type}
-      </foreach>
-    </if>
-
-
+    <include refid="search"></include>
     ORDER BY bno DESC
-    LIMIT #{skip}, #{count}
+    LIMIT
+    #{skip}, #{count}
+  </select>
+
+  <select id="listCountSearch" resultType="int">
+    SELECT count(bno)
+    FROM tbl_board
+    WHERE delFlag = false
+    <include refid="search"></include>
   </select>
 
 </mapper>
