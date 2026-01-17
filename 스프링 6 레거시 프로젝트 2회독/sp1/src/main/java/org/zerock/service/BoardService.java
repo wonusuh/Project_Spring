@@ -41,7 +41,7 @@ public class BoardService {
 	boardMapper.update(boardDTO);
     }
 
-    public BoardListPagingDTO getList(int page, int size) {
+    public BoardListPagingDTO getList(int page, int size, String typeStr, String keyword) {
 	// 페이지 번호가 0보다 작으면 무조건 1 페이지
 	page = page <= 0 ? 1 : page;
 
@@ -51,10 +51,9 @@ public class BoardService {
 	// 2페이지라면 (2-1) * 10 이 되어야 함
 	int skip = (page - 1) * size;
 
-	List<BoardDTO> list = boardMapper.list2(skip, size);
-
-	int total = boardMapper.listCount();
-
-	return new BoardListPagingDTO(list, total, page, size);
+	String[] types = typeStr == null ? null : typeStr.split("");
+	List<BoardDTO> list = boardMapper.listSearch(skip, size, types, keyword);// 게시글 목록
+	int total = boardMapper.listCountSearch(types, keyword);// 조건으로 검색된 게시글 개수
+	return new BoardListPagingDTO(list, total, page, size, typeStr, keyword);
     }
 }
