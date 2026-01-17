@@ -51,7 +51,16 @@ public class BoardService {
 	// 2페이지라면 (2-1) * 10 이 되어야 함
 	int skip = (page - 1) * size;
 
-	String[] types = typeStr == null ? null : typeStr.split("");
+//	String[] types = typeStr == null ? null : typeStr.split("");
+	String[] types = null;
+
+	// SQL Exception 해결 : 빈 문자열은 null 로 치환
+	if (typeStr == null || typeStr.equals("")) {
+	    types = null;
+	} else {
+	    types = typeStr.split("");
+	}
+
 	List<BoardDTO> list = boardMapper.listSearch(skip, size, types, keyword);// 게시글 목록
 	int total = boardMapper.listCountSearch(types, keyword);// 조건으로 검색된 게시글 개수
 	return new BoardListPagingDTO(list, total, page, size, typeStr, keyword);
