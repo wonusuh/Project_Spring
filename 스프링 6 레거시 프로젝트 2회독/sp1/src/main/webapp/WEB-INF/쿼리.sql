@@ -48,3 +48,5 @@ WHERE bno > 0
 AND delflag = FALSE
 ORDER BY bno DESC
 LIMIT 10 OFFSET 10;
+
+/* temp */
