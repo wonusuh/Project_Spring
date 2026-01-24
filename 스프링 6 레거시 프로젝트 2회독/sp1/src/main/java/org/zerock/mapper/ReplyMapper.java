@@ -1,5 +1,7 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.zerock.dto.ReplyDTO;
 
@@ -11,4 +13,8 @@ public interface ReplyMapper {
     int delete(@Param("rno") Long rno);
 
     int update(ReplyDTO replyDTO);
+
+    List<ReplyDTO> listOfBoard(@Param("bno") Long bno, @Param("skip") int skip, @Param("limit") int limit);
+
+    int countOfBoard(@Param("bno") Long bno);// 특정 게시물의 모든 댓글의 개수파악
 }
