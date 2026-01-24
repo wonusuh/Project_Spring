@@ -39,4 +39,22 @@
     WHERE rno = #{rno}
   </update>
 
+  <select id="listOfBoard" resultType="ReplyDTO">
+    SELECT *
+    FROM tbl_reply
+    WHERE bno = #{bno}
+    AND rno > 0
+    ORDER BY rno ASC
+    LIMIT #{limit}
+    OFFSET
+    #{skip}
+  </select>
+
+  <select id="countOfBoard">
+    SELECT count(rno)
+    FROM tbl_reply
+    WHERE bno = #{bno}
+    AND rno > 0
+  </select>
+
 </mapper>
