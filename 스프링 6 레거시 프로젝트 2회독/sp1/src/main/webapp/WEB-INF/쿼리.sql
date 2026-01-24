@@ -49,4 +49,22 @@ AND delflag = FALSE
 ORDER BY bno DESC
 LIMIT 10 OFFSET 10;
 
-/* temp */
+CREATE TABLE tbl_reply (
+rno INT AUTO_INCREMENT PRIMARY KEY,
+replyText VARCHAR(500) NOT NULL,
+replyer VARCHAR(50) NOT NULL,
+replydate TIMESTAMP DEFAULT NOW(),
+updatedate TIMESTAMP DEFAULT NOW(),
+delflag BOOLEAN DEFAULT FALSE,
+bno INT NOT null
+);
+
+ALTER TABLE tbl_reply
+ADD CONSTRAINT fk_reply_board
+FOREIGN KEY (bno)
+REFERENCES tbl_board(bno);
+
+CREATE INDEX idx_reply_board
+ON tbl_reply (bno DESC, rno ASC);
+
+SELECT * FROM tbl_reply;
