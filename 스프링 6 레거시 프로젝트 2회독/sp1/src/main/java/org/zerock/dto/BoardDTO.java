@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardDTO {
+
     private Long bno;
     private String title;
     private String writer;
@@ -20,6 +21,9 @@ public class BoardDTO {
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
     private boolean delFlag;
+
+    // 댓글 개수
+    private int replyCnt;
 
     public String getCreatedDate() {
 	return regDate.format(DateTimeFormatter.ISO_DATE);

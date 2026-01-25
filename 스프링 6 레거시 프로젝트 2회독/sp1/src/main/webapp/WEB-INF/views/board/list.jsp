@@ -45,7 +45,9 @@
 											value="${board.bno}" />
 								</a></td>
 
-								<td><c:out value="${board.title}" /></td>
+								<td><c:out value="${board.title}" /> <b
+									style="color: blue">[<c:out value="${board.replyCnt}" />]
+								</b></td>
 								<td><c:out value="${board.writer}" /></td>
 								<td><c:out value="${board.createdDate}" /></td>
 							</tr>
