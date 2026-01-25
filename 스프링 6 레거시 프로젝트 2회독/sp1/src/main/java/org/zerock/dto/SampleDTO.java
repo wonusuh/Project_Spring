@@ -4,6 +4,9 @@ import lombok.Data;
 
 @Data
 public class SampleDTO {
-    private int num;
-    private String name;
+
+	private int num;
+	
+	private String name;
 }
+

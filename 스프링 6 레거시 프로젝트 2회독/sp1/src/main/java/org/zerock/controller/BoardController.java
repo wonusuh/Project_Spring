@@ -21,6 +21,29 @@ import lombok.extern.log4j.Log4j2;
 public class BoardController {
     private final BoardService boardService;
 
+//	@GetMapping("list")
+//	public void list(Model model) {
+//		
+//		log.info("---------------------------------------");
+//		log.info("board list");
+//		
+//		model.addAttribute("list", boardService.getList());
+//		
+//	}
+
+//	@GetMapping("/list")
+//	public void list( 
+//			@RequestParam( name = "page", defaultValue = "1" ) int page,
+//			@RequestParam( name = "size", defaultValue = "10" ) int size,
+//			Model model) {
+//		
+//		log.info("page : " + page);
+//		log.info("size : " + size);
+//		
+//		model.addAttribute("dto", boardService.getList(page, size));
+//		
+//	}
+
     @GetMapping("/list")
     public void list(@RequestParam(name = "page", defaultValue = "1") int page,
 	    @RequestParam(name = "size", defaultValue = "10") int size,

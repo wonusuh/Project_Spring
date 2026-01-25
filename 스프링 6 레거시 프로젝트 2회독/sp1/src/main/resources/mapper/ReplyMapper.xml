@@ -1,59 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.ReplyMapper">
 
   <insert id="insert">
+
     <selectKey order="AFTER" keyProperty="rno"
       resultType="long">
       SELECT LAST_INSERT_ID()
     </selectKey>
 
-    INSERT INTO tbl_reply
-    (bno, replytext, replyer)
-    VALUES
-    (#{bno},
+    insert into tbl_reply (bno, replytext, replyer) values (#{bno},
     #{replyText}, #{replyer})
   </insert>
 
   <select id="read" resultType="ReplyDTO">
-    SELECT *
-    FROM tbl_reply
-    WHERE rno =
-    #{rno}
+    select * from tbl_reply where rno = #{rno}
   </select>
 
   <update id="delete">
-    UPDATE tbl_reply
-    SET delflag = true
-    WHERE rno =
-    #{rno}
+    update tbl_reply set delFlag = true, replyText='삭제된 댓글입니다.', replyer
+    ='unknown' WHERE rno = #{rno}
   </update>
 
   <update id="update">
-    UPDATE tbl_reply
-    SET
-    replyText = #{replyText},
-    updateDate = NOW()
-    WHERE rno = #{rno}
+    update tbl_reply set replyText = #{replyText}, updateDate = now() WHERE rno
+    = #{rno}
   </update>
 
   <select id="listOfBoard" resultType="ReplyDTO">
-    SELECT *
-    FROM tbl_reply
+
+    SELECT * FROM tbl_reply
     WHERE bno = #{bno}
     AND rno > 0
     ORDER BY rno ASC
-    LIMIT #{limit}
-    OFFSET
-    #{skip}
+    LIMIT #{limit} OFFSET #{skip}
+
   </select>
 
   <select id="countOfBoard">
-    SELECT count(rno)
-    FROM tbl_reply
+    SELECT count(rno) FROM tbl_reply
     WHERE bno = #{bno}
+    AND delFlag = false
     AND rno > 0
   </select>
 

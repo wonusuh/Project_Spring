@@ -68,3 +68,11 @@ CREATE INDEX idx_reply_board
 ON tbl_reply (bno DESC, rno ASC);
 
 SELECT * FROM tbl_reply;
+
+
+SELECT board.bno, title, content, writer, regDate, board.updatedate, COUNT(rno) AS replyCnt
+FROM tbl_board AS board LEFT OUTER JOIN tbl_reply AS reply
+ON reply.bno = board.bno
+WHERE board.delflag = FALSE
+GROUP BY board.bno
+ORDER BY board.bno DESC;
